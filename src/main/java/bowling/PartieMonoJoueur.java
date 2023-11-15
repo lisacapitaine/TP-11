@@ -8,7 +8,7 @@ package bowling;
 public class PartieMonoJoueur {
 private int quilles ; 
 private int score ; 
-private Tour [] tour ; 
+private int [] tour ; 
 private String joueur ; 
 private int lancer ; 
 private int nbTour ; 
@@ -21,7 +21,7 @@ private int nbLancer ;
 	this.quilles = 10 ; 
 	this.score = score ; 
 	this.joueur = joueur;
-	this.tour = new Tour[11]; 
+	this.tour = new int[11]; 
 	for(var i= 0; i < 11 ; i++) {
 	tour[i]=0 ; 
 	}
