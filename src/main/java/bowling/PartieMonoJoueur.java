@@ -7,8 +7,8 @@ package bowling;
  */
 public class PartieMonoJoueur {
 private int quilles ; 
-private int score ; 
-private int [] tour ; 
+
+private Tour [] tour ; 
 private String joueur ; 
 private int lancer ; 
 private int nbTour ; 
@@ -17,14 +17,10 @@ private int nbLancer ;
 	/**
 	 * Constructeur
 	 */
-	public PartieMonoJoueur(int score,String joueur, int lancer) {
-	this.quilles = 10 ; 
-	this.score = score ; 
+	public PartieMonoJoueur(String joueur, int lancer) {
+	this.quilles = 10 ;
 	this.joueur = joueur;
-	this.tour = new int[11]; 
-	for(var i= 0; i < 11 ; i++) {
-	tour[i]=0 ; 
-	}
+	this.tour = new Tour [11] ; 
 	this.lancer = lancer ; 
 	this.nbTour = 0 ; 
 	this.nbLancer = 0 ; 
@@ -61,35 +57,55 @@ private int nbLancer ;
 	 * @return Le score du joueur
 	 */
 	public int score() {
-		for ()
+		int score =  0 ; 
+		for (int i=0 ; i<tour.length-1 ;  i++ ){
+		score = score + tour[i].nbPoint(tour[i+1]) ; 
+		}
+		return score ; 
 	}
 
 	/**
 	 * @return vrai si la partie est terminée pour ce joueur, faux sinon
 	 */
 	public boolean estTerminee() {
-		lancer = lancer-1 ; 
-		if (lancer == 0)	{
+		int compteur = 0 ; 
+		for (int i=0 ; i<tour.length-1 ;  i++ ){
+		if (tour[i].getCompteur () > compteur ){
+		compteur = tour[i].getCompteur () ; 
+		} 
+		}
+		if (compteur == 10){
 			return true ; 
-
 		}
 		else return false ; 
-		}
-
+	    }
 
 	/**
 	 * @return Le numéro du tour courant [1..10], ou 0 si le jeu est fini
 	 */
 	public int numeroTourCourant() {
-	
+		int compteur = 0 ; 
+		for (int i=0 ; i<tour.length-1 ;  i++ ){
+		if (tour[i].getCompteur () > compteur ){
+		compteur = tour[i].getCompteur () ; 
+		}
 	}
+	return compteur ; 
+	}
+
+
+
+
 
 	/**
 	 * @return Le numéro du prochain lancer pour tour courant [1..3], ou 0 si le jeu
 	 *         est fini
 	 */
-	public int numeroProchainLancer() {
-		throw new UnsupportedOperationException("Pas encore implémenté");
+public int numeroProchainLancer() {
+		if (estTerminee()) return 0;
+		else return nbLancer ; 
+		
 	}
+
 
 }
