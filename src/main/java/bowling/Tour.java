@@ -2,12 +2,15 @@ public class Tour {
 
 private int lance1 ; 
 private int lance2 ; 
+private int compteur; 
+private static int add =0; 
 
 
-
-public Tour (int lance1 , int lance2 ){
+public Tour (int lance1 , int lance2){
     this.lance1 = lance1 ; 
     this.lance2 = lance2 ; 
+    compteur = add+1 ; 
+    add= add+1 ; 
 }
 
 public Tour (int lance1){
@@ -34,6 +37,10 @@ else return lance1 + lance2 ;
 
 }
 
+public int getCompteur () {
+    return compteur ; 
+}
+
 
 }
 
@@ -45,3 +52,8 @@ else return lance1 + lance2 ;
 //nb de quilles lancées du 1er et 2ème tour si pas strike ou spair
 //trike 10+bonus pair et idem pour spair ? 
 
+
+//la variable add est statique donc elle change pour toute les tours
+//genre à notre tour3 elle vaut 3, elle vaut 3 aussi à notre tour1 et à notre tour2
+//le compteur qui lui est unique à chaque tour vaut donc le add (qui change à chaque fois)
+//plus 1.
